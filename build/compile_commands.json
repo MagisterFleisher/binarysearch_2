@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/aaron/Programming/c/basics/binarysearch_2/build",
+  "command": "/usr/bin/gcc -g -std=gnu2x -o CMakeFiles/binarysearch_2.dir/src/main.c.o -c /home/aaron/Programming/c/basics/binarysearch_2/src/main.c",
+  "file": "/home/aaron/Programming/c/basics/binarysearch_2/src/main.c",
+  "output": "CMakeFiles/binarysearch_2.dir/src/main.c.o"
+}
+]
