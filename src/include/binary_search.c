@@ -9,6 +9,12 @@ void temp(void) {
 }
 
 int_fast16_t binarySearch(int* search_space, const uint_fast16_t search_space_size, const int search_value) {
+  enum search_enum {
+    EQUAL_TO_MIDDLE = 1,
+    GREATER_THAN_MIDDLE = 2,
+    LESS_THAN_MIDDLE = 3
+  };
+
   int_fast16_t found_index = -1;
 
   (void) assert(0 <= search_space_size);
@@ -28,7 +34,10 @@ int_fast16_t binarySearch(int* search_space, const uint_fast16_t search_space_si
 
   while(continue_searching) {
     switch(case_search_size) {
-      case 0 : {
+      case 0 : { 
+        /*
+          1 VALUE IN ARRAY 
+        */
         if(search_value == search_space[middle_index]) {
           return middle_index;
         } else {
@@ -37,6 +46,9 @@ int_fast16_t binarySearch(int* search_space, const uint_fast16_t search_space_si
         break;
       };
       case 1 : {
+        /*
+          2 VALUES IN ARRAY
+        */
         if(search_value == search_space[start_index]) {
           return 0;
         } else  {
@@ -48,6 +60,9 @@ int_fast16_t binarySearch(int* search_space, const uint_fast16_t search_space_si
         break;
       };
       default : {
+        /*
+          MORE THAN 2 VALUES IN ARRAY
+        */
         /* Find area
           1 -> the search value is at the middle value
           2 -> the search value is greater than the  middle value
@@ -55,21 +70,21 @@ int_fast16_t binarySearch(int* search_space, const uint_fast16_t search_space_si
           default -> this shouldn't happen
         */
         switch(find_area) {
-          case 1 : {
+          case EQUAL_TO_MIDDLE : {
             (void) printf("%d-\tfound at middle index: %ju\tmiddle index value: %d\n", __LINE__, middle_index, search_space[middle_index]);
             return middle_index;
             //found_index = middle_index;
             continue_searching = false;
             break;
           };
-          case 2 : {
+          case GREATER_THAN_MIDDLE : {
             (void) printf("%d-\tgreater than middle index: %ju\tmiddle index value: %d\n", __LINE__, middle_index, search_space[middle_index]);
             start_index = middle_index + 1;
             case_search_size = end_index - start_index;
             middle_index = (end_index - start_index) + middle_index;
             break;
           };
-          case 3 : {
+          case LESS_THAN_MIDDLE : {
             (void) printf("%d-\tless that middle index: %ju\tmiddle index value: %d\n", __LINE__, middle_index, search_space[middle_index]);
             end_index = middle_index - 1;
             case_search_size = end_index - start_index;
